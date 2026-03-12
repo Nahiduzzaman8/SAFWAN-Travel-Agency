@@ -6,7 +6,6 @@ from .serializers import TourPackageSerializer
 from accounts.decorators import jwt_required
 
 class TourListView(APIView):
-    @jwt_required
     def get(self, request):
         tours = TourPackage.objects.all()
         serializer = TourPackageSerializer(tours, many=True)

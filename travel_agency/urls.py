@@ -3,7 +3,21 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('accounts.urls')),
+    path('api/accounts', include('accounts.urls')),
     path("api/tours/", include("tours.urls")),
     path("api/contact/", include("contact.urls")),
+    path("api/bookings/", include("bookings.urls")),
 ]
+from django.conf import settings
+from django.conf.urls.static import static
+from django.urls import path, include
+
+urlpatterns = [
+    path("api/accounts/", include("accounts.urls")),
+    path("api/tours/", include("tours.urls")),
+    path("api/bookings/", include("bookings.urls")),
+    path("api/contact/", include("contact.urls")),
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
